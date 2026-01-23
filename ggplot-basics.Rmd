@@ -1,7 +1,7 @@
 ---
 title: "Overview of basic features of ggplot"
-author: "Caleb Trujillo"
-date: "`r Sys.Date()`"
+author: "Sophia Walters"
+date: "1/23/2026"
 output: html_document
 ---
 
@@ -19,7 +19,7 @@ Here you will make your figure. You can write a commit for each figure or error 
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y = lifeExp))
-p + geom_point() 
+p + geom_point() + geom_smooth()
 
 ```
 
