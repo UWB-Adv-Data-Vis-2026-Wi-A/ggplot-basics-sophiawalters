@@ -33,7 +33,7 @@ p <- ggplot(data = gapminder,
                           y = lifeExp,
                           color = continent,
                           fill = lifeExp))
-p + geom_smooth()
+p + geom_point() + geom_smooth(method = "loess") + scale_x_log10
 ```
 
 
