@@ -1,13 +1,14 @@
 ---
 title: "Overview of basic features of ggplot"
-author: "Caleb Trujillo"
-date: "`r Sys.Date()`"
+author: "Sophia Walters"
+date: "1/23/2026"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 pacman::p_load(tidyverse,nycflights13,gapminder,socviz)
+
 ```
 
 ### Figure 3.13
@@ -19,7 +20,7 @@ Here you will make your figure. You can write a commit for each figure or error 
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y = lifeExp))
-p + geom_point() 
+p + geom_point(alpha = 0.3) + geom_smooth(method = "gam") + scale_x_log10(labels = scales::dollar) + labs(x = "GDP Per Capita", y = "Life Expectancy in Years", title = "Economic Growth and Life Expectancy", subtitle = "Data points are country-years", caption = "Source: Gapminder.")
 
 ```
 
@@ -30,17 +31,26 @@ Here you will make your next figure.
 ```{r 3.16 plot}
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
-                          y = lifeExp,
-                          color = continent,
-                          fill = lifeExp))
-p + geom_smooth()
+                          y = lifeExp))
+p + geom_point(mapping = aes(color = continent)) + geom_smooth(method = "loess") + scale_x_log10()
 ```
 
 
-### Orignal graph
+### Original graph using the yarn dataset
 
 Continue practicing by accessing an unfamiliar data set from another package.
 You can load a dataset of your choice to show you can build a graphic using ggplot layers.
 Here are some sample data sets [https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html)
 
+```{r knitting}
+ggplot(warpbreaks, aes(x = tension, y = breaks, color = wool)) +
+  geom_jitter(width = 0.2, height = 0, alpha = 0.7) +
+  labs(
+    title = "Yarn Breaks by Tension and Wool Type",
+    x = "Loom Tension",
+    y = "Number of Breaks",
+    color = "Wool Type"
+  ) +
+  theme_minimal()
 
+```
